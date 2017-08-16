@@ -134,6 +134,15 @@ storiesOf('DayPickerSingleDateController', module)
       numberOfMonths={1}
     />
   ))
+  .addWithInfo('single month years enabled', () => (
+    <DayPickerSingleDateControllerWrapper
+      onOutsideClick={action('DayPickerSingleDateController::onOutsideClick')}
+      onPrevMonthClick={action('DayPickerSingleDateController::onPrevMonthClick')}
+      onNextMonthClick={action('DayPickerSingleDateController::onNextMonthClick')}
+      numberOfMonths={1}
+      isYearsEnabled
+    />
+  ))
   .addWithInfo('3 months', () => (
     <DayPickerSingleDateControllerWrapper
       onOutsideClick={action('DayPickerSingleDateController::onOutsideClick')}
