@@ -42,7 +42,7 @@
     left: 22px;
   }
 
-  .DayPickerNavigation__prev--rtl {  
+  .DayPickerNavigation__prev--rtl {
     left: auto;
     right: 22px;
   }
@@ -51,7 +51,7 @@
     right: 22px;
   }
 
-  .DayPickerNavigation__next--rtl {  
+  .DayPickerNavigation__next--rtl {
     right: auto;
     left: 22px;
   }
@@ -62,6 +62,41 @@
       height: 19px;
       width: 19px;
       fill: $react-dates-color-gray-light;
+    }
+  }
+}
+
+.DayPickerNavigation--horizontal-with-years {
+  .DayPickerNavigation__prev,
+  .DayPickerNavigation__next {
+    border-radius: 3px;
+    padding: 3px 6px;
+    top: 22px;
+  }
+
+  .DayPickerNavigation__prev--month {
+    left: 22px;
+  }
+
+  .DayPickerNavigation__next--month {
+    left: 52px;
+    right: auto;
+  }
+
+  .DayPickerNavigation__prev--year {
+    right: 52px;
+    left: auto;
+  }
+
+  .DayPickerNavigation__next--year {
+    right: 22px;
+  }
+
+  .DayPickerNavigation__prev--default,
+  .DayPickerNavigation__next--default {
+    svg {
+      height: 13px;
+      width: 13px;
     }
   }
 }
