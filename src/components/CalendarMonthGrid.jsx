@@ -117,24 +117,26 @@ export default class CalendarMonthGrid extends React.Component {
     const { initialMonth, numberOfMonths, orientation } = nextProps;
     const { months } = this.state;
 
-    const hasMonthChanged = !this.props.initialMonth.isSame(initialMonth, 'month');
+    const hasMonthChanged = !this.props.initialMonth.isSame(initialMonth);
     const hasNumberOfMonthsChanged = this.props.numberOfMonths !== numberOfMonths;
     let newMonths = months;
 
-    if (hasMonthChanged && !hasNumberOfMonthsChanged) {
-      if (isAfterDay(initialMonth, this.props.initialMonth)) {
-        newMonths = months.slice(1);
-        newMonths.push(months[months.length - 1].clone().add(1, 'month'));
-      } else {
-        newMonths = months.slice(0, months.length - 1);
-        newMonths.unshift(months[0].clone().subtract(1, 'month'));
-      }
-    }
+    // if (hasMonthChanged && !hasNumberOfMonthsChanged) {
+    //   if (isAfterDay(initialMonth, this.props.initialMonth)) {
+    //     newMonths = months.slice(1);
+    //     newMonths.push(months[months.length - 1].clone().add(1, 'month'));
+    //   } else {
+    //     newMonths = months.slice(0, months.length - 1);
+    //     newMonths.unshift(months[0].clone().subtract(1, 'month'));
+    //   }
+    // }
 
-    if (hasNumberOfMonthsChanged) {
+    if (hasMonthChanged || hasNumberOfMonthsChanged) {
       const withoutTransitionMonths = orientation === VERTICAL_SCROLLABLE;
       newMonths = getMonths(initialMonth, numberOfMonths, withoutTransitionMonths);
     }
+
+    console.log(newMonths);
 
     this.setState({
       months: newMonths,
@@ -210,11 +212,12 @@ export default class CalendarMonthGrid extends React.Component {
       width,
     };
 
+    console.log(months);
+
     return (
       <div
         ref={(ref) => { this.container = ref; }}
         className={className}
-        style={style}
         onTransitionEnd={onMonthTransitionEnd}
       >
         {months.map((month, i) => {

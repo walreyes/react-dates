@@ -219,7 +219,6 @@ export default class DayPicker extends React.Component {
     this.onNextMonthClick = this.onNextMonthClick.bind(this);
     this.onPrevYearClick = this.onPrevYearClick.bind(this);
     this.onNextYearClick = this.onNextYearClick.bind(this);
-    this.onMonthChange = this.onMonthChange.bind(this);
     this.setCalendarMonthGridRef = this.setCalendarMonthGridRef.bind(this);
     this.multiplyScrollableMonths = this.multiplyScrollableMonths.bind(this);
     this.updateStateAfterMonthTransition = this.updateStateAfterMonthTransition.bind(this);
@@ -488,19 +487,6 @@ export default class DayPicker extends React.Component {
     });
   }
 
-  onMonthChange(newMonth) {
-    console.log('DayPicker', newMonth);
-    // Translation value is a hack to force an invisible transition that
-    // properly rerenders the CalendarMonthGrid
-    this.setState({
-      monthTransition: MONTH_SELECTION_TRANSITION,
-      translationValue: 0.00001,
-      focusedDate: null,
-      nextFocusedDate: newMonth,
-      currentMonth: newMonth,
-    });
-  }
-
   getFocusedDay(newMonth) {
     const { getFirstFocusableDay, numberOfMonths } = this.props;
 
@@ -624,7 +610,7 @@ export default class DayPicker extends React.Component {
         break;
       }
       case MONTH_SELECTION_TRANSITION: {
-        if (onMonthChange) onMonthChange(newMonth);
+        // if (onMonthChange) onMonthChange(newMonth);
         break;
       }
       default: {
@@ -939,7 +925,6 @@ export default class DayPicker extends React.Component {
                 onDayClick={onDayClick}
                 onDayMouseEnter={onDayMouseEnter}
                 onDayMouseLeave={onDayMouseLeave}
-                onMonthChange={this.onMonthChange}
                 renderMonth={renderMonth}
                 renderDay={renderDay}
                 onMonthTransitionEnd={this.updateStateAfterMonthTransition}
