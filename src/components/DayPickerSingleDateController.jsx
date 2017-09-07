@@ -74,6 +74,7 @@ const propTypes = forbidExtraProps({
   phrases: PropTypes.shape(getPhrasePropTypes(DayPickerPhrases)),
 
   isRTL: PropTypes.bool,
+  isYearsEnabled: PropTypes.bool,
 });
 
 const defaultProps = {
@@ -121,6 +122,7 @@ const defaultProps = {
   phrases: DayPickerPhrases,
 
   isRTL: false,
+  isYearsEnabled: false,
 };
 
 export default class DayPickerSingleDateController extends React.Component {
@@ -569,6 +571,7 @@ export default class DayPickerSingleDateController extends React.Component {
       renderCalendarInfo,
       isFocused,
       isRTL,
+      isYearsEnabled,
       phrases,
       onOutsideClick,
       onBlur,
@@ -606,6 +609,7 @@ export default class DayPickerSingleDateController extends React.Component {
         phrases={phrases}
         daySize={daySize}
         isRTL={isRTL}
+        isYearsEnabled={isYearsEnabled}
         showKeyboardShortcuts={showKeyboardShortcuts}
         weekDayFormat={weekDayFormat}
       />
