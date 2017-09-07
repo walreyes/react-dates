@@ -44,6 +44,8 @@ const propTypes = forbidExtraProps({
   focusedDate: momentPropTypes.momentObj, // indicates focusable day
   isFocused: PropTypes.bool, // indicates whether or not to move focus to focusable day
 
+  isYearsEnabled: PropTypes.bool,
+
   // i18n
   monthFormat: PropTypes.string,
   phrases: PropTypes.shape(getPhrasePropTypes(CalendarDayPhrases)),
@@ -65,6 +67,7 @@ const defaultProps = {
 
   focusedDate: null,
   isFocused: false,
+  isYearsEnabled: false,
 
   // i18n
   monthFormat: 'MMMM YYYY', // english locale
@@ -118,11 +121,13 @@ export default class CalendarMonth extends React.Component {
       daySize,
       focusedDate,
       isFocused,
+      isYearsEnabled,
       phrases,
     } = this.props;
 
     const { weeks } = this.state;
-    const monthTitle = renderMonth ? renderMonth(month) : month.format(monthFormat);
+    const monthTitle = renderMonth ? renderMonth(month) : month.format(isYearsEnabled ? monthFormat.replace(/Y+/g, '') : monthFormat);
+    const yearTitle = isYearsEnabled ? month.format('YYYY') : null;
 
     const calendarMonthClasses = cx('CalendarMonth', {
       'CalendarMonth--horizontal': orientation === HORIZONTAL_ORIENTATION,
@@ -134,9 +139,9 @@ export default class CalendarMonth extends React.Component {
       <div className={calendarMonthClasses} data-visible={isVisible}>
         <table>
           <caption className="CalendarMonth__caption js-CalendarMonth__caption">
-            <strong>{monthTitle}</strong>
+            <span className="CalendarMonth__caption CalendarMonth__month-title">{monthTitle}</span>
+            <span className="CalendarMonth__caption CalendarMonth__year-title">{yearTitle}</span>
           </caption>
-
           <tbody className="js-CalendarMonth__grid">
             {weeks.map((week, i) => (
               <tr key={i}>
