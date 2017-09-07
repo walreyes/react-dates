@@ -37,6 +37,8 @@ const propTypes = forbidExtraProps({
 
   onPrevMonthClick: PropTypes.func,
   onNextMonthClick: PropTypes.func,
+  onPrevYearClick: PropTypes.func,
+  onNextYearClick: PropTypes.func,
   onOutsideClick: PropTypes.func,
   renderDay: PropTypes.func,
 
@@ -74,6 +76,8 @@ const defaultProps = {
   navNext: null,
   onPrevMonthClick() {},
   onNextMonthClick() {},
+  onPrevYearClick() {},
+  onNextYearClick() {},
 
   // internationalization
   monthFormat: 'MMMM YYYY',

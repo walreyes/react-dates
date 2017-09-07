@@ -105,6 +105,8 @@ storiesOf('DayPickerSingleDateController', module)
       onOutsideClick={action('DayPickerSingleDateController::onOutsideClick')}
       onPrevMonthClick={action('DayPickerSingleDateController::onPrevMonthClick')}
       onNextMonthClick={action('DayPickerSingleDateController::onNextMonthClick')}
+      onPrevYearClick={action('DayPickerSingleDateController::onPrevYearClick')}
+      onNextYearClick={action('DayPickerSingleDateController::onNextYearClick')}
     />
   ))
   .addWithInfo('with custom input', () => (
@@ -112,6 +114,8 @@ storiesOf('DayPickerSingleDateController', module)
       onOutsideClick={action('DayPickerSingleDateController::onOutsideClick')}
       onPrevMonthClick={action('DayPickerSingleDateController::onPrevMonthClick')}
       onNextMonthClick={action('DayPickerSingleDateController::onNextMonthClick')}
+      onPrevYearClick={action('DayPickerSingleDateController::onPrevYearClick')}
+      onNextYearClick={action('DayPickerSingleDateController::onNextYearClick')}
       showInput
     />
   ))
@@ -122,6 +126,8 @@ storiesOf('DayPickerSingleDateController', module)
         onOutsideClick={action('DayPickerSingleDateController::onOutsideClick')}
         onPrevMonthClick={action('DayPickerSingleDateController::onPrevMonthClick')}
         onNextMonthClick={action('DayPickerSingleDateController::onNextMonthClick')}
+        onPrevYearClick={action('DayPickerSingleDateController::onPrevYearClick')}
+        onNextYearClick={action('DayPickerSingleDateController::onNextYearClick')}
         monthFormat="YYYY[年]MMMM"
       />
     );
@@ -131,6 +137,8 @@ storiesOf('DayPickerSingleDateController', module)
       onOutsideClick={action('DayPickerSingleDateController::onOutsideClick')}
       onPrevMonthClick={action('DayPickerSingleDateController::onPrevMonthClick')}
       onNextMonthClick={action('DayPickerSingleDateController::onNextMonthClick')}
+      onPrevYearClick={action('DayPickerSingleDateController::onPrevYearClick')}
+      onNextYearClick={action('DayPickerSingleDateController::onNextYearClick')}
       numberOfMonths={1}
     />
   ))
@@ -139,6 +147,8 @@ storiesOf('DayPickerSingleDateController', module)
       onOutsideClick={action('DayPickerSingleDateController::onOutsideClick')}
       onPrevMonthClick={action('DayPickerSingleDateController::onPrevMonthClick')}
       onNextMonthClick={action('DayPickerSingleDateController::onNextMonthClick')}
+      onPrevYearClick={action('DayPickerSingleDateController::onPrevYearClick')}
+      onNextYearClick={action('DayPickerSingleDateController::onNextYearClick')}
       numberOfMonths={1}
       isYearsEnabled
     />
@@ -148,6 +158,8 @@ storiesOf('DayPickerSingleDateController', module)
       onOutsideClick={action('DayPickerSingleDateController::onOutsideClick')}
       onPrevMonthClick={action('DayPickerSingleDateController::onPrevMonthClick')}
       onNextMonthClick={action('DayPickerSingleDateController::onNextMonthClick')}
+      onPrevYearClick={action('DayPickerSingleDateController::onPrevYearClick')}
+      onNextYearClick={action('DayPickerSingleDateController::onNextYearClick')}
       numberOfMonths={3}
     />
   ))
@@ -156,6 +168,8 @@ storiesOf('DayPickerSingleDateController', module)
       onOutsideClick={action('DayPickerSingleDateController::onOutsideClick')}
       onPrevMonthClick={action('DayPickerSingleDateController::onPrevMonthClick')}
       onNextMonthClick={action('DayPickerSingleDateController::onNextMonthClick')}
+      onPrevYearClick={action('DayPickerSingleDateController::onPrevYearClick')}
+      onNextYearClick={action('DayPickerSingleDateController::onNextYearClick')}
       orientation={VERTICAL_ORIENTATION}
     />
   ))
@@ -164,6 +178,8 @@ storiesOf('DayPickerSingleDateController', module)
       onOutsideClick={action('DayPickerSingleDateController::onOutsideClick')}
       onPrevMonthClick={action('DayPickerSingleDateController::onPrevMonthClick')}
       onNextMonthClick={action('DayPickerSingleDateController::onNextMonthClick')}
+      onPrevYearClick={action('DayPickerSingleDateController::onPrevYearClick')}
+      onNextYearClick={action('DayPickerSingleDateController::onNextYearClick')}
       navPrev={<TestPrevIcon />}
       navNext={<TestNextIcon />}
     />
@@ -173,6 +189,8 @@ storiesOf('DayPickerSingleDateController', module)
       onOutsideClick={action('DayPickerSingleDateController::onOutsideClick')}
       onPrevMonthClick={action('DayPickerSingleDateController::onPrevMonthClick')}
       onNextMonthClick={action('DayPickerSingleDateController::onNextMonthClick')}
+      onPrevYearClick={action('DayPickerSingleDateController::onPrevYearClick')}
+      onNextYearClick={action('DayPickerSingleDateController::onNextYearClick')}
       numberOfMonths={1}
       enableOutsideDays
     />
@@ -182,6 +200,8 @@ storiesOf('DayPickerSingleDateController', module)
       onOutsideClick={action('DayPickerSingleDateController::onOutsideClick')}
       onPrevMonthClick={action('DayPickerSingleDateController::onPrevMonthClick')}
       onNextMonthClick={action('DayPickerSingleDateController::onNextMonthClick')}
+      onPrevYearClick={action('DayPickerSingleDateController::onPrevYearClick')}
+      onNextYearClick={action('DayPickerSingleDateController::onNextYearClick')}
       initialVisibleMonth={() => moment().add(10, 'months')}
     />
   ))
@@ -190,6 +210,8 @@ storiesOf('DayPickerSingleDateController', module)
       onOutsideClick={action('DayPickerSingleDateController::onOutsideClick')}
       onPrevMonthClick={action('DayPickerSingleDateController::onPrevMonthClick')}
       onNextMonthClick={action('DayPickerSingleDateController::onNextMonthClick')}
+      onPrevYearClick={action('DayPickerSingleDateController::onPrevYearClick')}
+      onNextYearClick={action('DayPickerSingleDateController::onNextYearClick')}
       isOutsideRange={() => false}
     />
   ))
@@ -198,6 +220,8 @@ storiesOf('DayPickerSingleDateController', module)
       onOutsideClick={action('DayPickerSingleDateController::onOutsideClick')}
       onPrevMonthClick={action('DayPickerSingleDateController::onPrevMonthClick')}
       onNextMonthClick={action('DayPickerSingleDateController::onNextMonthClick')}
+      onPrevYearClick={action('DayPickerSingleDateController::onPrevYearClick')}
+      onNextYearClick={action('DayPickerSingleDateController::onNextYearClick')}
       isOutsideRange={day =>
         !isInclusivelyAfterDay(day, moment()) ||
         isInclusivelyAfterDay(day, moment().add(2, 'weeks'))
@@ -209,6 +233,8 @@ storiesOf('DayPickerSingleDateController', module)
       onOutsideClick={action('DayPickerSingleDateController::onOutsideClick')}
       onPrevMonthClick={action('DayPickerSingleDateController::onPrevMonthClick')}
       onNextMonthClick={action('DayPickerSingleDateController::onNextMonthClick')}
+      onPrevYearClick={action('DayPickerSingleDateController::onPrevYearClick')}
+      onNextYearClick={action('DayPickerSingleDateController::onNextYearClick')}
       isDayBlocked={day1 => datesList.some(day2 => isSameDay(day1, day2))}
     />
   ))
@@ -217,6 +243,8 @@ storiesOf('DayPickerSingleDateController', module)
       onOutsideClick={action('DayPickerSingleDateController::onOutsideClick')}
       onPrevMonthClick={action('DayPickerSingleDateController::onPrevMonthClick')}
       onNextMonthClick={action('DayPickerSingleDateController::onNextMonthClick')}
+      onPrevYearClick={action('DayPickerSingleDateController::onPrevYearClick')}
+      onNextYearClick={action('DayPickerSingleDateController::onNextYearClick')}
       isDayHighlighted={day1 => datesList.some(day2 => isSameDay(day1, day2))}
     />
   ))
@@ -225,6 +253,8 @@ storiesOf('DayPickerSingleDateController', module)
       onOutsideClick={action('DayPickerSingleDateController::onOutsideClick')}
       onPrevMonthClick={action('DayPickerSingleDateController::onPrevMonthClick')}
       onNextMonthClick={action('DayPickerSingleDateController::onNextMonthClick')}
+      onPrevYearClick={action('DayPickerSingleDateController::onPrevYearClick')}
+      onNextYearClick={action('DayPickerSingleDateController::onNextYearClick')}
       isDayBlocked={day => moment.weekdays(day.weekday()) === 'Friday'}
     />
   ))
@@ -233,6 +263,8 @@ storiesOf('DayPickerSingleDateController', module)
       onOutsideClick={action('DayPickerSingleDateController::onOutsideClick')}
       onPrevMonthClick={action('DayPickerSingleDateController::onPrevMonthClick')}
       onNextMonthClick={action('DayPickerSingleDateController::onNextMonthClick')}
+      onPrevYearClick={action('DayPickerSingleDateController::onPrevYearClick')}
+      onNextYearClick={action('DayPickerSingleDateController::onNextYearClick')}
       renderDay={day => day.format('ddd')}
     />
   ))
@@ -241,6 +273,8 @@ storiesOf('DayPickerSingleDateController', module)
       onOutsideClick={action('DayPickerSingleDateController::onOutsideClick')}
       onPrevMonthClick={action('DayPickerSingleDateController::onPrevMonthClick')}
       onNextMonthClick={action('DayPickerSingleDateController::onNextMonthClick')}
+      onPrevYearClick={action('DayPickerSingleDateController::onPrevYearClick')}
+      onNextYearClick={action('DayPickerSingleDateController::onNextYearClick')}
       renderCalendarInfo={() => (
         <TestCustomInfoPanel />
       )}

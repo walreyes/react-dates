@@ -59,6 +59,8 @@ const propTypes = forbidExtraProps({
 
   onPrevMonthClick: PropTypes.func,
   onNextMonthClick: PropTypes.func,
+  onPrevYearClick: PropTypes.func,
+  onNextYearClick: PropTypes.func,
   onOutsideClick: PropTypes.func,
   renderDay: PropTypes.func,
   renderCalendarInfo: PropTypes.func,
@@ -106,6 +108,8 @@ const defaultProps = {
 
   onPrevMonthClick() {},
   onNextMonthClick() {},
+  onPrevYearClick() {},
+  onNextYearClick() {},
   onOutsideClick: null,
 
   renderDay: null,
@@ -157,6 +161,8 @@ export default class DayPickerSingleDateController extends React.Component {
 
     this.onPrevMonthClick = this.onPrevMonthClick.bind(this);
     this.onNextMonthClick = this.onNextMonthClick.bind(this);
+    this.onPrevYearClick = this.onPrevYearClick.bind(this);
+    this.onNextYearClick = this.onNextYearClick.bind(this);
 
     this.getFirstFocusableDay = this.getFirstFocusableDay.bind(this);
   }
@@ -381,6 +387,54 @@ export default class DayPickerSingleDateController extends React.Component {
     onNextMonthClick(newCurrentMonth.clone());
   }
 
+  onPrevYearClick() {
+    const { onPrevYearClick, numberOfMonths, enableOutsideDays } = this.props;
+    const { currentMonth, visibleDays } = this.state;
+
+    const newVisibleDays = {};
+    Object.keys(visibleDays).sort().slice(0, numberOfMonths + 1).forEach((month) => {
+      newVisibleDays[month] = visibleDays[month];
+    });
+
+    const prevMonth = currentMonth.clone().subtract(1, 'year');
+    const prevMonthVisibleDays = getVisibleDays(prevMonth, 1, enableOutsideDays);
+
+    this.setState({
+      currentMonth: prevMonth,
+      visibleDays: {
+        ...newVisibleDays,
+        ...this.getModifiers(prevMonthVisibleDays),
+      },
+    });
+
+    onPrevYearClick(prevMonth.clone());
+  }
+
+  onNextYearClick() {
+    const { onNextYearClick, numberOfMonths, enableOutsideDays } = this.props;
+    const { currentMonth, visibleDays } = this.state;
+
+    const newVisibleDays = {};
+    Object.keys(visibleDays).sort().slice(1).forEach((month) => {
+      newVisibleDays[month] = visibleDays[month];
+    });
+
+    const nextMonth = currentMonth.clone().add(numberOfMonths, 'year');
+    const nextMonthVisibleDays = getVisibleDays(nextMonth, 1, enableOutsideDays);
+
+    const newCurrentMonth = currentMonth.clone().add(1, 'year');
+
+    this.setState({
+      currentMonth: newCurrentMonth,
+      visibleDays: {
+        ...newVisibleDays,
+        ...this.getModifiers(nextMonthVisibleDays),
+      },
+    });
+
+    onNextYearClick(newCurrentMonth.clone());
+  }
+
 
   getFirstFocusableDay(newMonth) {
     const { date, numberOfMonths } = this.props;
@@ -592,6 +646,8 @@ export default class DayPickerSingleDateController extends React.Component {
         onDayMouseLeave={this.onDayMouseLeave}
         onPrevMonthClick={this.onPrevMonthClick}
         onNextMonthClick={this.onNextMonthClick}
+        onPrevYearClick={this.onPrevYearClick}
+        onNextYearClick={this.onNextYearClick}
         monthFormat={monthFormat}
         withPortal={withPortal}
         hidden={!focused}

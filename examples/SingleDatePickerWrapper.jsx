@@ -57,6 +57,8 @@ const defaultProps = {
   navNext: null,
   onPrevMonthClick() {},
   onNextMonthClick() {},
+  onPrevYearClick() {},
+  onNextYearClick() {},
 
   // day presentation and interaction related props
   renderDay: null,
