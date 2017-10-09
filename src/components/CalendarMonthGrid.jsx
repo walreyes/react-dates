@@ -18,15 +18,9 @@ import getCalendarMonthWidth from '../utils/getCalendarMonthWidth';
 import toISOMonthString from '../utils/toISOMonthString';
 import isAfterDay from '../utils/isAfterDay';
 
-import ScrollableOrientationShape from '../shapes/ScrollableOrientationShape';
 import DayOfWeekShape from '../shapes/DayOfWeekShape';
 
-import {
-  HORIZONTAL_ORIENTATION,
-  VERTICAL_ORIENTATION,
-  VERTICAL_SCROLLABLE,
-  DAY_SIZE,
-} from '../../constants';
+import { DAY_SIZE } from '../../constants';
 
 const propTypes = forbidExtraProps({
   enableOutsideDays: PropTypes.bool,
@@ -35,7 +29,6 @@ const propTypes = forbidExtraProps({
   isAnimating: PropTypes.bool,
   numberOfMonths: PropTypes.number,
   modifiers: PropTypes.object,
-  orientation: ScrollableOrientationShape,
   onDayClick: PropTypes.func,
   onDayMouseEnter: PropTypes.func,
   onDayMouseLeave: PropTypes.func,
@@ -60,7 +53,6 @@ const defaultProps = {
   isAnimating: false,
   numberOfMonths: 1,
   modifiers: {},
-  orientation: HORIZONTAL_ORIENTATION,
   onDayClick() {},
   onDayMouseEnter() {},
   onDayMouseLeave() {},
@@ -94,9 +86,8 @@ function getMonths(initialMonth, numberOfMonths, withoutTransitionMonths) {
 export default class CalendarMonthGrid extends React.Component {
   constructor(props) {
     super(props);
-    const withoutTransitionMonths = props.orientation === VERTICAL_SCROLLABLE;
     this.state = {
-      months: getMonths(props.initialMonth, props.numberOfMonths, withoutTransitionMonths),
+      months: getMonths(props.initialMonth, props.numberOfMonths, false),
     };
 
     this.isTransitionEndSupported = isTransitionEndSupported();
@@ -113,7 +104,7 @@ export default class CalendarMonthGrid extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { initialMonth, numberOfMonths, orientation } = nextProps;
+    const { initialMonth, numberOfMonths } = nextProps;
     const { months } = this.state;
 
     const hasMonthChanged = !this.props.initialMonth.isSame(initialMonth);
@@ -131,8 +122,7 @@ export default class CalendarMonthGrid extends React.Component {
     }
 
     if (hasMonthChanged || hasNumberOfMonthsChanged) {
-      const withoutTransitionMonths = orientation === VERTICAL_SCROLLABLE;
-      newMonths = getMonths(initialMonth, numberOfMonths, withoutTransitionMonths);
+      newMonths = getMonths(initialMonth, numberOfMonths, false);
       this.setState({
         months: newMonths,
       });
@@ -166,7 +156,6 @@ export default class CalendarMonthGrid extends React.Component {
   }
 
   render() {
-    console.log('Render');
     const {
       enableOutsideDays,
       firstVisibleMonthIndex,
@@ -174,7 +163,6 @@ export default class CalendarMonthGrid extends React.Component {
       modifiers,
       numberOfMonths,
       monthFormat,
-      orientation,
       transformValue,
       daySize,
       onDayMouseEnter,
@@ -190,23 +178,12 @@ export default class CalendarMonthGrid extends React.Component {
     } = this.props;
 
     const { months } = this.state;
-    const isVertical = orientation === VERTICAL_ORIENTATION;
-    const isVerticalScrollable = orientation === VERTICAL_SCROLLABLE;
-    const isHorizontal = orientation === HORIZONTAL_ORIENTATION;
-
-    const className = cx('CalendarMonthGrid', {
-      'CalendarMonthGrid--horizontal': isHorizontal,
-      'CalendarMonthGrid--vertical': isVertical,
-      'CalendarMonthGrid--vertical-scrollable': isVerticalScrollable,
+    const className = cx('CalendarMonthGrid', 'CalendarMonthGrid--horizontal', {
       'CalendarMonthGrid--animating': isAnimating,
     });
 
     const calendarMonthWidth = getCalendarMonthWidth(daySize);
-
-    const width = isVertical || isVerticalScrollable ?
-      calendarMonthWidth :
-      (numberOfMonths + 2) * calendarMonthWidth;
-
+    const width = (numberOfMonths + 2) * calendarMonthWidth;
     const style = {
       ...getTransformStyles(transformValue),
       width,
@@ -231,7 +208,6 @@ export default class CalendarMonthGrid extends React.Component {
               enableOutsideDays={enableOutsideDays}
               modifiers={modifiers[monthString]}
               monthFormat={monthFormat}
-              orientation={orientation}
               onDayMouseEnter={onDayMouseEnter}
               onDayMouseLeave={onDayMouseLeave}
               onDayClick={onDayClick}

@@ -20,12 +20,7 @@ import toISODateString from '../utils/toISODateString';
 import ScrollableOrientationShape from '../shapes/ScrollableOrientationShape';
 import DayOfWeekShape from '../shapes/DayOfWeekShape';
 
-import {
-  HORIZONTAL_ORIENTATION,
-  VERTICAL_ORIENTATION,
-  VERTICAL_SCROLLABLE,
-  DAY_SIZE,
-} from '../../constants';
+import { DAY_SIZE } from '../../constants';
 
 const propTypes = forbidExtraProps({
   month: momentPropTypes.momentObj,
@@ -56,7 +51,6 @@ const defaultProps = {
   isVisible: true,
   enableOutsideDays: false,
   modifiers: {},
-  orientation: HORIZONTAL_ORIENTATION,
   daySize: DAY_SIZE,
   onDayClick() {},
   onDayMouseEnter() {},
@@ -110,7 +104,6 @@ export default class CalendarMonth extends React.Component {
     const {
       month,
       monthFormat,
-      orientation,
       isVisible,
       modifiers,
       onDayClick,
@@ -129,11 +122,7 @@ export default class CalendarMonth extends React.Component {
     const monthTitle = renderMonth ? renderMonth(month) : month.format(isYearsEnabled ? monthFormat.replace(/Y+/g, '') : monthFormat);
     const yearTitle = isYearsEnabled ? month.format('YYYY') : null;
 
-    const calendarMonthClasses = cx('CalendarMonth', {
-      'CalendarMonth--horizontal': orientation === HORIZONTAL_ORIENTATION,
-      'CalendarMonth--vertical': orientation === VERTICAL_ORIENTATION,
-      'CalendarMonth--vertical-scrollable': orientation === VERTICAL_SCROLLABLE,
-    });
+    const calendarMonthClasses = cx('CalendarMonth', 'CalendarMonth--horizontal');
 
     return (
       <div className={calendarMonthClasses} data-visible={isVisible}>
